@@ -1,0 +1,24 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: therionlabs-gateway
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: microservicio-usuarios
+            uri: ${URL_USUARIOS:http://localhost:8081}
+            predicates:
+              - Path=/api/usuarios/**
+
+          - id: microservicio-recursos
+            uri: ${URL_RECURSOS:http://localhost:8082}
+            predicates:
+              - Path=/api/recursos/**
+
+          - id: microservicio-solicitudes
+            uri: ${URL_SOLICITUDES:http://localhost:8083}
+            predicates:
+              - Path=/api/solicitudes/**
